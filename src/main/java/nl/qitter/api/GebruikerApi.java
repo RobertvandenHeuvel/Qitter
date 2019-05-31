@@ -54,12 +54,19 @@ public class GebruikerApi {
 		
 		Optional<Gebruiker> oudeGebruiker = gebruikerService.findGebruikerById(id);
 		Gebruiker nieuw = oudeGebruiker.get();
+		if (gebruiker.getUsername() != null)
 		nieuw.setUsername(gebruiker.getUsername());
+		if (gebruiker.getWachtwoord() != null)
 		nieuw.setWachtwoord(gebruiker.getWachtwoord());
+		if (gebruiker.getBio() != null)
 		nieuw.setBio(gebruiker.getBio());
+		if (gebruiker.getVoornaam() != null)
 		nieuw.setVoornaam(gebruiker.getVoornaam());
+		if (gebruiker.getAchternaam() != null)
 		nieuw.setAchternaam(gebruiker.getAchternaam());
+		if (gebruiker.getEmail() != null)
 		nieuw.setEmail(gebruiker.getEmail());
+		if (gebruiker.getRol() != null)
 		nieuw.setRol(gebruiker.getRol());
 		return Response.ok(gebruikerService.saveGebruiker(nieuw)).build();
 	}
