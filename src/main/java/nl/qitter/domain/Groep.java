@@ -20,7 +20,6 @@ public class Groep {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	long id;
 	
-	
 	@JsonIgnoreProperties("groepen")
 	@ManyToMany (mappedBy = "groepen", fetch = FetchType.EAGER)
 	Set<Gebruiker> gebruikers;
