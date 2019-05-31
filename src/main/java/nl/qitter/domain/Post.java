@@ -21,10 +21,10 @@ public class Post {
 	private long id;
 	
 	@JsonIgnoreProperties("posts")
-	@ManyToOne (fetch = FetchType.EAGER)
+	@OneToMany (fetch = FetchType.EAGER)
 	private Set<Gebruiker> gebruikersToegang;
 	
-	//@JsonIgnoreProperties("posts")
+	@JsonIgnoreProperties("posts")
 	@OneToMany (mappedBy = "posts", fetch = FetchType.EAGER)
 	private Set<Post> posts;
 	
