@@ -18,21 +18,24 @@ public class Groep {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long id;
+	private long id;
 	
 	@JsonIgnoreProperties("groepen")
 	@ManyToMany (mappedBy = "groepen", fetch = FetchType.EAGER)
-	Set<Gebruiker> gebruikers;
-	String groepsNaam;
+	private Set<Gebruiker> gebruikers;
+
+	private String groepsNaam;
+	
 	
 //	Getters en Setters
 	
-//	public Set<Long> getGroepsledenId() {
-//		return groepsledenId;
-//	}
-//	public void setGroepsledenId(Set<Long> groepsledenId) {
-//		this.groepsledenId = groepsledenId;
-//	}
+	public Set<Gebruiker> getGebruikers() {
+		return gebruikers;
+	}
+	public void setGebruikers(Set<Gebruiker> gebruikers) {
+		this.gebruikers = gebruikers;
+	}
+	
 	public String getGroepsNaam() {
 		return groepsNaam;
 	}
