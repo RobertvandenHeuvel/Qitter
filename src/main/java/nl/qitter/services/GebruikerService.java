@@ -1,5 +1,7 @@
 package nl.qitter.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,8 +16,19 @@ public class GebruikerService {
 	@Autowired
 	GebruikerRepository gebruikerRepository;
 	
+	public Gebruiker saveGebruiker(Gebruiker gebruiker){
+		return gebruikerRepository.save(gebruiker);
+	}
+	
+	public void deleteGebruikerById(long id) {
+		gebruikerRepository.deleteById(id);
+	}
+	
 	public Iterable<Gebruiker> findAlleGebruikers(){
 		return gebruikerRepository.findAll();
-		
+	}
+	
+	public Optional<Gebruiker> findGebruikerById(long id) {
+     	return gebruikerRepository.findById(id);
 	}
 }
