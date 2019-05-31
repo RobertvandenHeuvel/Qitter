@@ -51,7 +51,7 @@ public class GebruikerApi {
 	@PUT
 	@Path("{id}")
 	public Response updateGebruiker(@PathParam("id") long id, Gebruiker gebruiker) {
-		
+		System.out.println("Check in PUT/id van GebruikerApi");
 		Optional<Gebruiker> oudeGebruiker = gebruikerService.findGebruikerById(id);
 		Gebruiker nieuw = oudeGebruiker.get();
 		nieuw.setUsername(gebruiker.getUsername());
