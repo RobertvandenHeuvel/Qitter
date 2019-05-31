@@ -24,7 +24,7 @@ public class Post {
 	@ManyToOne (fetch = FetchType.EAGER)
 	private Set<Gebruiker> gebruikersToegang;
 	
-	@JsonIgnoreProperties("posts")
+	//@JsonIgnoreProperties("posts")
 	@OneToMany (mappedBy = "posts", fetch = FetchType.EAGER)
 	private Set<Post> posts;
 	
