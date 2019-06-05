@@ -71,11 +71,13 @@ public class GebruikerApi {
 		return Response.ok(gebruikerService.saveGebruiker(nieuw)).build();
 	}
 
+	
 
 	@DELETE
 	@Path("{id}")
 	public Response deleteGebruiker(@PathParam("id") long id) {
 		gebruikerService.deleteGebruikerById(id);
+		System.out.println("Check in Delete/id van GebruikerApi");
 		return Response.status(Response.Status.OK).build();
 	}
 }
