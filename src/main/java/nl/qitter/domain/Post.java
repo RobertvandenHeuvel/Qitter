@@ -31,9 +31,16 @@ public class Post {
 	private PostSoort postSoort;
 	private String tekst;
 	private LocalDateTime aanmaakDatum;
+	private Gebruiker gebruiker;
 	
 // Getters en Setters
 	
+	public Gebruiker getGebruiker() {
+		return gebruiker;
+	}
+	public void setGebruiker(Gebruiker gebruiker) {
+		this.gebruiker = gebruiker;
+	}
 	public Set<Gebruiker> getGebruikersToegang() {
 		return gebruikersToegang;
 	}
