@@ -2,13 +2,9 @@ package nl.qitter.domain;
 
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Gebruiker {
@@ -29,7 +25,8 @@ public class Gebruiker {
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Groep> groepen;
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@JsonIgnoreProperties("gebruiker")
+	@OneToMany(mappedBy="gebruiker",fetch = FetchType.EAGER)
 	private Set<Post> posts;
 	
 	public String getUsername() {
