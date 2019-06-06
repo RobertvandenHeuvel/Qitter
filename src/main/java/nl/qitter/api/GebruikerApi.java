@@ -35,6 +35,7 @@ public class GebruikerApi {
 	@GET
 	@Path("{id}")
 	public Response getGebruikerById(@PathParam("id") long id) {
+		System.out.println("Check in @GET van gebruikerApi: gebruikerID =" + id);
 		Optional<Gebruiker> gebruiker = gebruikerService.findGebruikerById(id);
 		return Response.ok(gebruiker.get()).build();
 	}
