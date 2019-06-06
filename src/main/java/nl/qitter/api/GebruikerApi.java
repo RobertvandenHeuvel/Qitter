@@ -51,7 +51,7 @@ public class GebruikerApi {
 	@PUT
 	@Path("{id}")
 	public Response updateGebruiker(@PathParam("id") long id, Gebruiker gebruiker) {
-		
+		System.out.println("Check in PUT/id van GebruikerApi");
 		Optional<Gebruiker> oudeGebruiker = gebruikerService.findGebruikerById(id);
 		Gebruiker nieuw = oudeGebruiker.get();
 		if (gebruiker.getUsername() != null)
@@ -71,11 +71,13 @@ public class GebruikerApi {
 		return Response.ok(gebruikerService.saveGebruiker(nieuw)).build();
 	}
 
+	
 
 	@DELETE
 	@Path("{id}")
 	public Response deleteGebruiker(@PathParam("id") long id) {
 		gebruikerService.deleteGebruikerById(id);
+		System.out.println("Check in Delete/id van GebruikerApi");
 		return Response.status(Response.Status.OK).build();
 	}
 }
