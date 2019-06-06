@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -22,39 +23,40 @@ public class Post {
 	
 	@JsonIgnoreProperties("posts")
 	@OneToMany (fetch = FetchType.EAGER)
-	private Set<Gebruiker> gebruikersToegang;
+	private Set<Gebruiker> gebruikersMetToegang;
 	
-	@JsonIgnoreProperties("posts")
-	@OneToMany (mappedBy = "posts", fetch = FetchType.EAGER)
-	private Set<Post> posts;
+//	@JsonIgnoreProperties("posts")
+//	@OneToMany (mappedBy = "reacties", fetch = FetchType.EAGER)
+//	private Set<Post> reacties;
 	
 	private PostSoort postSoort;
 	private String tekst;
 	private LocalDateTime aanmaakDatum;
 	
-	@ManyToOne (fetch = FetchType.EAGER)
-	private Gebruiker gebruiker;
+	@JsonIgnoreProperties("posts")
+	@OneToOne (fetch = FetchType.EAGER)
+	private Gebruiker aanmaker;
 	
 // Getters en Setters
 	
 	public Gebruiker getGebruiker() {
-		return gebruiker;
+		return aanmaker;
 	}
 	public void setGebruiker(Gebruiker gebruiker) {
-		this.gebruiker = gebruiker;
+		this.aanmaker = gebruiker;
 	}
 	public Set<Gebruiker> getGebruikersToegang() {
-		return gebruikersToegang;
+		return gebruikersMetToegang;
 	}
 	public void setGebruikersToegang(Set<Gebruiker> gebruikersToegang) {
-		this.gebruikersToegang = gebruikersToegang;
+		this.gebruikersMetToegang = gebruikersToegang;
 	}
-	public Set<Post> getPosts() {
-		return posts;
-	}
-	public void setPosts(Set<Post> posts) {
-		this.posts = posts;
-	}
+//	public Set<Post> getPosts() {
+//		return reacties;
+//	}
+//	public void setPosts(Set<Post> posts) {
+//		this.reacties = posts;
+//	}
 	public PostSoort getPostSoort() {
 		return postSoort;
 	}
