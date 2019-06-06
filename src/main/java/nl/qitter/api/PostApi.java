@@ -2,16 +2,8 @@ package nl.qitter.api;
 
 import java.util.Optional;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -65,7 +57,7 @@ public class PostApi {
 		}
 		Post target = oldPost.get();
 		target.setGebruikersToegang(post.getGebruikersToegang());
-		target.setPosts(post.getPosts());
+//		target.setPosts(post.getPosts());
 		target.setPostSoort(post.getPostSoort());
 		target.setAanmaakDatum(post.getAanmaakDatum());
 		target.setTekst(post.getTekst());
