@@ -65,7 +65,7 @@ public class PostApi {
 		}
 		Post target = oldPost.get();
 		target.setGebruikersToegang(post.getGebruikersToegang());
-		target.setPosts(post.getPosts());
+//		target.setPosts(post.getPosts());
 		target.setPostSoort(post.getPostSoort());
 		target.setAanmaakDatum(post.getAanmaakDatum());
 		target.setTekst(post.getTekst());
