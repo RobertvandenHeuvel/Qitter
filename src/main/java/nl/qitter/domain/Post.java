@@ -35,15 +35,15 @@ public class Post {
 	
 	@JsonIgnoreProperties("posts")
 	@OneToOne (fetch = FetchType.EAGER)
-	private Gebruiker aanmaker;
+	private Gebruiker gebruiker;
 	
 // Getters en Setters
 	
 	public Gebruiker getGebruiker() {
-		return aanmaker;
+		return gebruiker;
 	}
 	public void setGebruiker(Gebruiker gebruiker) {
-		this.aanmaker = gebruiker;
+		this.gebruiker = gebruiker;
 	}
 	public Set<Gebruiker> getGebruikersToegang() {
 		return gebruikersMetToegang;

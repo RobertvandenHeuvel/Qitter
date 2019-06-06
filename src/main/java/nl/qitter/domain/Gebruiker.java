@@ -32,7 +32,7 @@ public class Gebruiker {
 	private Set<Groep> groepen;
 	
 	@JsonIgnoreProperties("gebruiker")
-	@OneToMany(mappedBy="aanmaker",fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="gebruiker",fetch = FetchType.EAGER)
 	private Set<Post> posts;
 	
 	public String getUsername() {
