@@ -31,6 +31,8 @@ public class Post {
 	private PostSoort postSoort;
 	private String tekst;
 	private LocalDateTime aanmaakDatum;
+	
+	@ManyToOne (fetch = FetchType.EAGER)
 	private Gebruiker gebruiker;
 	
 // Getters en Setters
