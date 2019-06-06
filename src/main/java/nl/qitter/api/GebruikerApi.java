@@ -68,6 +68,8 @@ public class GebruikerApi {
 		nieuw.setEmail(gebruiker.getEmail());
 		if (gebruiker.getRol() != null)
 		nieuw.setRol(gebruiker.getRol());
+		if (gebruiker.getPosts() != null)
+		nieuw.setPosts(gebruiker.getPosts());
 		return Response.ok(gebruikerService.saveGebruiker(nieuw)).build();
 	}
 

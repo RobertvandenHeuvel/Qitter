@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Gebruiker {
 
@@ -29,7 +31,8 @@ public class Gebruiker {
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Groep> groepen;
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@JsonIgnoreProperties("gebruiker")
+	@OneToMany(mappedBy="aanmaker",fetch = FetchType.EAGER)
 	private Set<Post> posts;
 	
 	public String getUsername() {
