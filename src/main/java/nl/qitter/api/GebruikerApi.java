@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import nl.qitter.domain.Gebruiker;
-import nl.qitter.domain.Groep;
+//import nl.qitter.domain.Groep;
 import nl.qitter.services.GebruikerService;
 
 @Component
@@ -64,6 +64,8 @@ public class GebruikerApi {
 		nieuw.setRol(gebruiker.getRol());
 		if (gebruiker.getPosts() != null)
 		nieuw.setPosts(gebruiker.getPosts());
+		if (gebruiker.getGroep() != null)
+			nieuw.setGroep(gebruiker.getGroep());
 		return Response.ok(gebruikerService.saveGebruiker(nieuw)).build();
 	}
 
