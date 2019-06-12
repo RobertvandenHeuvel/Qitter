@@ -22,6 +22,7 @@ public class PostApi {
 
 	@POST // Create
 	public Response apiCreate(Post post) {
+		System.out.println("Check in @POST van PostApi");
 		if (post.getId() != 0) {
 			return Response.status(Response.Status.CONFLICT).build();
 		}
