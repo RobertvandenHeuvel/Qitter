@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import nl.qitter.domain.Gebruiker;
+import nl.qitter.domain.Post;
 //import nl.qitter.domain.Groep;
 import nl.qitter.services.GebruikerService;
+import nl.qitter.services.PostService;
 
 @Component
 @Path("gebruiker")
@@ -19,6 +21,8 @@ import nl.qitter.services.GebruikerService;
 public class GebruikerApi {
 	@Autowired
 	GebruikerService gebruikerService;
+	@Autowired
+	PostService postService;
 
 	@POST
 	public Response postGebruiker(Gebruiker gebruiker) {
@@ -62,9 +66,25 @@ public class GebruikerApi {
 		nieuw.setEmail(gebruiker.getEmail());
 		if (gebruiker.getRol() != null)
 		nieuw.setRol(gebruiker.getRol());
-		nieuw.setPosts(gebruiker.getPosts());
+		
+		
 		if (gebruiker.getGroep() != null)
 			nieuw.setGroep(gebruiker.getGroep());
+		
+//		if (gebruiker.getPosts() != null)
+//		nieuw.setPosts(gebruiker.getPosts());
+		System.out.println(gebruiker.getPosts());
+			for(Post post: gebruiker.getPosts()) {
+				System.out.println(post.getTekst());
+	     		post.setGebruiker(nieuw);
+	     		System.out.println(post.getGebruiker().getUsername());
+	     		postService.save(post);
+	     		nieuw.addPost(post);
+	     	}
+		nieuw.setPosts(gebruiker.getPosts());
+		
+		
+		System.out.println("Get posts van nieuwe gebruiker" + nieuw.getPosts());
 		return Response.ok(gebruikerService.saveGebruiker(nieuw)).build();
 	}
 
