@@ -22,6 +22,7 @@ public class GebruikerApi {
 
 	@POST
 	public Response postGebruiker(Gebruiker gebruiker) {
+		System.out.println("Check in @Post van gebruikerApi");
 		Gebruiker gebruikerPost = gebruikerService.saveGebruiker(gebruiker);
 		return Response.ok(gebruikerPost).build();
 	}
