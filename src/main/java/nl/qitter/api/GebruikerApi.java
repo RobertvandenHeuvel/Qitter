@@ -66,6 +66,14 @@ public class GebruikerApi {
 		return Response.ok(gebruikerService.saveGebruiker(nieuw)).build();
 	}
 
+//	@PUT
+//	@Path("{id}/groep/{id}")
+//	public Response updateGebruikerGroep(@PathParam("id") long id, Gebruiker gebruiker) {
+//		System.out.println("Check in PUT/id/groep van GebruikerApi");
+//		Optional<Gebruiker> oudeGebruiker = gebruikerService.findGebruikerById(id);
+//		Gebruiker nieuw = oudeGebruiker.get();
+//		return Response.ok(gebruikerService.saveGebruiker(nieuw)).build();
+//	}
 	
 
 	@DELETE
