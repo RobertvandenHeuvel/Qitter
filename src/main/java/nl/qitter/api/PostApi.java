@@ -56,6 +56,7 @@ public class PostApi {
 			return Response.status(Response.Status.NOT_FOUND).build();
 		}
 		Post target = oldPost.get();
+		target.setGebruiker(post.getGebruiker());
 		target.setGebruikersToegang(post.getGebruikersToegang());
 //		target.setPosts(post.getPosts());
 		target.setPostSoort(post.getPostSoort());
