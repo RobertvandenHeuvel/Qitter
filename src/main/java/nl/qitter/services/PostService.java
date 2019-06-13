@@ -18,6 +18,7 @@ public class PostService {
 	
 	
 	public Post save(Post post) {
+		System.out.println("check in post save: postservice. De tekst van de post is: " + post.getTekst());
      	return postRepository.save(post);
 	}
 	public void deleteById(Long id) {

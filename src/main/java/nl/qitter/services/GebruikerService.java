@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import nl.qitter.domain.Gebruiker;
+import nl.qitter.domain.Post;
 import nl.qitter.repositories.GebruikerRepository;
 
 @Service
@@ -17,6 +18,11 @@ public class GebruikerService {
 	GebruikerRepository gebruikerRepository;
 	
 	public Gebruiker saveGebruiker(Gebruiker gebruiker){
+		if(gebruiker.getPosts()!=null) {
+		for(Post post: gebruiker.getPosts()) {
+		System.out.println(post.getTekst());
+		}
+		}
 		return gebruikerRepository.save(gebruiker);
 	}
 	

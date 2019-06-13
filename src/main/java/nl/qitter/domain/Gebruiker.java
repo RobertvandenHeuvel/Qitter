@@ -21,9 +21,9 @@ public class Gebruiker {
 	private String email;
 	private Rol rol;
 	
-	
+	@JsonIgnoreProperties("gebruikers")
 	@ManyToMany(fetch = FetchType.EAGER)
-	private Set<Groep> groepen;
+	private Set<Groep> groep;
 	
 	@JsonIgnoreProperties("gebruiker")
 	@OneToMany(mappedBy="gebruiker",fetch = FetchType.EAGER)
@@ -85,12 +85,12 @@ public class Gebruiker {
 		this.rol = rol;
 	}
 
-	public Set<Groep> getGroepen() {
-		return groepen;
+	public Set<Groep> getGroep() {
+		return groep;
 	}
 
-	public void setGroepen(Set<Groep> groepen) {
-		this.groepen = groepen;
+	public void setGroep(Set<Groep> groep) {
+		this.groep = groep;
 	}
 
 	public Set<Post> getPosts() {
@@ -103,5 +103,10 @@ public class Gebruiker {
 
 	public long getId() {
 		return id;
+	}
+	
+	public void addPost(Post post) {
+		this.posts.add(post);
+		post.setGebruiker(this);
 	}
 }

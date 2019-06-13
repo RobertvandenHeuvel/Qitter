@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import nl.qitter.domain.Gebruiker;
-import nl.qitter.domain.Groep;
+import nl.qitter.domain.Post;
+//import nl.qitter.domain.Groep;
 import nl.qitter.services.GebruikerService;
+import nl.qitter.services.PostService;
 
 @Component
 @Path("gebruiker")
@@ -19,9 +21,12 @@ import nl.qitter.services.GebruikerService;
 public class GebruikerApi {
 	@Autowired
 	GebruikerService gebruikerService;
+	@Autowired
+	PostService postService;
 
 	@POST
 	public Response postGebruiker(Gebruiker gebruiker) {
+		System.out.println("Check in @Post van gebruikerApi");
 		Gebruiker gebruikerPost = gebruikerService.saveGebruiker(gebruiker);
 		return Response.ok(gebruikerPost).build();
 	}
@@ -61,11 +66,36 @@ public class GebruikerApi {
 		nieuw.setEmail(gebruiker.getEmail());
 		if (gebruiker.getRol() != null)
 		nieuw.setRol(gebruiker.getRol());
-		if (gebruiker.getPosts() != null)
+		
+		
+		if (gebruiker.getGroep() != null)
+			nieuw.setGroep(gebruiker.getGroep());
+		
+//		if (gebruiker.getPosts() != null)
+//		nieuw.setPosts(gebruiker.getPosts());
+		System.out.println(gebruiker.getPosts());
+			for(Post post: gebruiker.getPosts()) {
+				System.out.println(post.getTekst());
+	     		post.setGebruiker(nieuw);
+	     		System.out.println(post.getGebruiker().getUsername());
+	     		postService.save(post);
+	     		nieuw.addPost(post);
+	     	}
 		nieuw.setPosts(gebruiker.getPosts());
+		
+		
+		System.out.println("Get posts van nieuwe gebruiker" + nieuw.getPosts());
 		return Response.ok(gebruikerService.saveGebruiker(nieuw)).build();
 	}
 
+//	@PUT
+//	@Path("{id}/groep/{id}")
+//	public Response updateGebruikerGroep(@PathParam("id") long id, Gebruiker gebruiker) {
+//		System.out.println("Check in PUT/id/groep van GebruikerApi");
+//		Optional<Gebruiker> oudeGebruiker = gebruikerService.findGebruikerById(id);
+//		Gebruiker nieuw = oudeGebruiker.get();
+//		return Response.ok(gebruikerService.saveGebruiker(nieuw)).build();
+//	}
 	
 
 	@DELETE

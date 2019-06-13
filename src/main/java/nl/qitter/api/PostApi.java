@@ -22,6 +22,7 @@ public class PostApi {
 
 	@POST // Create
 	public Response apiCreate(Post post) {
+		System.out.println("check in Post van post ");
 		if (post.getId() != 0) {
 			return Response.status(Response.Status.CONFLICT).build();
 		}
@@ -56,6 +57,7 @@ public class PostApi {
 			return Response.status(Response.Status.NOT_FOUND).build();
 		}
 		Post target = oldPost.get();
+		target.setGebruiker(post.getGebruiker());
 		target.setGebruikersToegang(post.getGebruikersToegang());
 //		target.setPosts(post.getPosts());
 		target.setPostSoort(post.getPostSoort());
