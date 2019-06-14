@@ -73,6 +73,11 @@ public class GebruikerApi {
 		
 //		if (gebruiker.getPosts() != null)
 //		nieuw.setPosts(gebruiker.getPosts());
+		System.out.print("gebruiker voornaam: ");
+		System.out.println(gebruiker.getVoornaam());
+		System.out.print("nieuw voornaam: ");
+		System.out.println(nieuw.getVoornaam());
+		System.out.print("gebruiker api getPosts ");
 		System.out.println(gebruiker.getPosts());
 			for(Post post: gebruiker.getPosts()) {
 				System.out.println(post.getTekst());
