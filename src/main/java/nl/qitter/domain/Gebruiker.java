@@ -104,4 +104,9 @@ public class Gebruiker {
 	public long getId() {
 		return id;
 	}
+	
+	public void addPost(Post post) {
+		this.posts.add(post);
+		post.setGebruiker(this);
+	}
 }
