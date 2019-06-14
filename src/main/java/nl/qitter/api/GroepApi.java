@@ -22,6 +22,7 @@ public class GroepApi {
 
 	@POST // Create
 	public Response apiCreate(Groep groep) {
+		System.out.println("Check in POST groep. Groepsnaam: " + groep.getGroepsNaam() + " gebruikers: " + groep.getGebruikers());
 		if (groep.getId() != 0) {
 			return Response.status(Response.Status.CONFLICT).build();
 		}
