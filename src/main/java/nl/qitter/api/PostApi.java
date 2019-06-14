@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import nl.qitter.domain.Post;
+import nl.qitter.domain.Reactie;
 import nl.qitter.services.PostService;
+import nl.qitter.services.ReactieService;
 
 @Component
 @Produces(MediaType.APPLICATION_JSON)
@@ -19,6 +21,9 @@ import nl.qitter.services.PostService;
 public class PostApi {
 	@Autowired
 	private PostService postService;
+	
+	@Autowired
+	private ReactieService reactieService;
 
 	@POST // Create
 	public Response apiCreate(Post post) {
@@ -59,10 +64,19 @@ public class PostApi {
 		Post target = oldPost.get();
 		target.setGebruiker(post.getGebruiker());
 		target.setGebruikersToegang(post.getGebruikersToegang());
-//		target.setPosts(post.getPosts());
 		target.setPostSoort(post.getPostSoort());
 		target.setAanmaakDatum(post.getAanmaakDatum());
 		target.setTekst(post.getTekst());
+		
+		for(Reactie reactie: post.getReacties()) {
+			System.out.println(reactie.getTekst());
+     		reactie.setPost(target);
+     		System.out.println(reactie.getPost().getGebruiker().getUsername());
+     		reactieService.save(reactie);
+     		target.addReactie(reactie);
+     	}
+	target.setReacties(post.getReacties());
+		
 		System.out.println("Check in @PUT/id van PostApi");
 		return Response.ok(postService.save(target)).build();
 	}
