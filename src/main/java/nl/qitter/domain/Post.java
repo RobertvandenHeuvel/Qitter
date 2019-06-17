@@ -21,7 +21,7 @@ public class Post {
 	private Set<Gebruiker> gebruikersMetToegang;
 	
 	@JsonIgnoreProperties("post")
-	@OneToMany (fetch = FetchType.EAGER)
+	@OneToMany (mappedBy="post", fetch = FetchType.EAGER)
 	private Set<Reactie> reacties;
 	
 	public Set<Reactie> getReacties() {
