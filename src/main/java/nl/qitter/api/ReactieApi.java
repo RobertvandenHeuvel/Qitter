@@ -21,28 +21,29 @@ public class ReactieApi {
 	
 	@POST
 	public Response apiCreate(Reactie reactie) {
-		System.out.println("check in Reactie van reactie ");
+		System.out.println("check in @Post van ReactieApi");
 		if (reactie.getId() != 0) {
 			return Response.status(Response.Status.CONFLICT).build();
 		}
 		return Response.ok(reactieService.save(reactie)).build();
 	}
+	
+	@GET // Retrieve/Read
+	public Response apiGetAll() {
+		System.out.println("Check in @GET/all van ReactieApi");
+		return Response.ok(reactieService.findAll()).build();
+	}
 
 	@GET // Retrieve/Read
 	@Path("{id}")
 	public Response apiGetById(@PathParam("id") long id) {
+		System.out.println("Check in @GET/id van ReactieApi");
 		Optional<Reactie> reactie = reactieService.findById(id);
 		if (reactie.isPresent() == false) {
 			return Response.status(Response.Status.NOT_FOUND).build();
 		} else {
 			return Response.ok(reactie.get()).build();
 		}
-	}
-
-	@GET // Retrieve/Read
-	public Response apiGetAll() {
-		System.out.println("Check in @GET van ReactieApi");
-		return Response.ok(reactieService.findAll()).build();
 	}
 
 	@PUT // Update
@@ -69,6 +70,7 @@ public class ReactieApi {
 	@DELETE
 	@Path("{id}")
 	public Response apiDeleteById(@PathParam("id") long id) {
+		System.out.println("Check in @Delete/id van ReactieApi");
 		if (reactieService.findById(id).isPresent() == false) {
 			return Response.status(Response.Status.NOT_FOUND).build();
 		} else {

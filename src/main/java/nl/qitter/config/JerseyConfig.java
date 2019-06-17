@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import nl.qitter.api.GebruikerApi;
 import nl.qitter.api.GroepApi;
 import nl.qitter.api.PostApi;
+import nl.qitter.api.ReactieApi;
 
 import javax.ws.rs.ApplicationPath;
 
@@ -17,5 +18,6 @@ public class JerseyConfig extends ResourceConfig {
 		register(GroepApi.class); //--> commando voor aanroepen Api
 		register(PostApi.class); //--> commando voor aanroepen Api
 		register(GebruikerApi.class); //--> commando voor aanroepen Api
+		register(ReactieApi.class);
 	}
 }
