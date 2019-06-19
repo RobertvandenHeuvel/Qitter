@@ -27,6 +27,12 @@ public class GroepApi {
 		}
 		return Response.ok(groepService.save(groep)).build();
 	}
+	
+	@GET // Retrieve/Read
+	public Response apiGetAll() {
+		System.out.println("Check in @GET van GroepApi");
+		return Response.ok(groepService.findAll()).build();
+	}
 
 	@GET // Retrieve/Read
 	@Path("{id}")
@@ -37,12 +43,6 @@ public class GroepApi {
 		} else {
 			return Response.ok(groep.get()).build();
 		}
-	}
-
-	@GET // Retrieve/Read
-	public Response apiGetAll() {
-		System.out.println("Check in @GET van GroepApi");
-		return Response.ok(groepService.findAll()).build();
 	}
 
 	@PUT // Update
