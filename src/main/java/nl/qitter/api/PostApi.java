@@ -54,6 +54,7 @@ public class PostApi {
 	@PUT // Update
 	@Path("{id}")
 	public Response apiUpdate(@PathParam("id") long id, Post post) {
+		System.out.println("@PUT in PostApi");
 		if (post == null || post.getId() != id)
 			return Response.status(Response.Status.BAD_REQUEST).build();
 

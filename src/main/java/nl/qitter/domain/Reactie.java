@@ -26,7 +26,7 @@ public class Reactie {
 	private String tekst;
 	private LocalDateTime aanmaakDatum;
 	
-	@JsonIgnoreProperties("posts")
+	@JsonIgnoreProperties("reacties")
 	@OneToOne (fetch = FetchType.EAGER)
 	private Gebruiker gebruiker;
 	

@@ -56,7 +56,7 @@ public class GroepApi {
 			return Response.status(Response.Status.NOT_FOUND).build();
 		}
 		Groep target = oldGroep.get();
-		target.setGebruikers(groep.getGebruikers());
+//		target.setGebruikers(groep.getGebruikers());
 		target.setGroepsNaam(groep.getGroepsNaam());
 		System.out.println("Check in @PUT/id van GroepApi");
 		return Response.ok(groepService.save(target)).build();

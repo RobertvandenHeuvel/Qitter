@@ -1,5 +1,6 @@
 package nl.qitter.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -16,7 +17,7 @@ public class Groep {
 	
 	@JsonIgnoreProperties("groep")
 	@ManyToMany (mappedBy = "groep", fetch = FetchType.EAGER)
-	private Set<Gebruiker> gebruikers;
+	private Set<Gebruiker> gebruikers = new HashSet<Gebruiker>();
 
 	private String groepsNaam;
 	
@@ -28,6 +29,11 @@ public class Groep {
 	}
 	public void setGebruikers(Set<Gebruiker> gebruikers) {
 		this.gebruikers = gebruikers;
+	}
+	
+	public void addGebruiker(Gebruiker gebruiker) {
+		System.out.println("in addgebruiker van Groep " +  this.gebruikers +"" + gebruiker.getVoornaam() + "" + this.groepsNaam);
+		this.gebruikers.add(gebruiker);
 	}
 	
 	public String getGroepsNaam() {

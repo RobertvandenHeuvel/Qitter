@@ -22,11 +22,11 @@ public class Gebruiker {
 	private Rol rol;
 	
 	@JsonIgnoreProperties("gebruikers")
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER, cascade= {CascadeType.PERSIST, CascadeType.MERGE} )
 	private Set<Groep> groep;
 	
 	@JsonIgnoreProperties("gebruiker")
-	@OneToMany(mappedBy="gebruiker",fetch = FetchType.EAGER)
+	@OneToMany( mappedBy="gebruiker",fetch = FetchType.EAGER)
 	private Set<Post> posts;
 	
 	public String getUsername() {
@@ -108,6 +108,11 @@ public class Gebruiker {
 	public void addPost(Post post) {
 		this.posts.add(post);
 		post.setGebruiker(this);
+	}
+	
+	public void addGroep(Groep groep) {
+		this.groep.add(groep);
+		groep.addGebruiker(this);
 	}
 }
 

@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import nl.qitter.domain.Gebruiker;
+import nl.qitter.domain.Groep;
 import nl.qitter.domain.Post;
 //import nl.qitter.domain.Groep;
 import nl.qitter.services.GebruikerService;
+import nl.qitter.services.GroepService;
 import nl.qitter.services.PostService;
 
 @Component
@@ -23,6 +25,8 @@ public class GebruikerApi {
 	GebruikerService gebruikerService;
 	@Autowired
 	PostService postService;
+	@Autowired
+	GroepService groepService;
 
 	@POST
 	public Response postGebruiker(Gebruiker gebruiker) {
@@ -52,6 +56,7 @@ public class GebruikerApi {
 		System.out.println("Check in PUT/id van GebruikerApi");
 		Optional<Gebruiker> oudeGebruiker = gebruikerService.findGebruikerById(id);
 		Gebruiker nieuw = oudeGebruiker.get();
+		
 		if (gebruiker.getUsername() != null)
 		nieuw.setUsername(gebruiker.getUsername());
 		if (gebruiker.getWachtwoord() != null)
@@ -68,8 +73,13 @@ public class GebruikerApi {
 		nieuw.setRol(gebruiker.getRol());
 		
 		
-		if (gebruiker.getGroep() != null)
-			nieuw.setGroep(gebruiker.getGroep());
+		for(Groep groep: gebruiker.getGroep()) {
+			System.out.println(groep.getGroepsNaam());
+     		groep.addGebruiker(nieuw);
+     		groepService.save(groep);
+     		nieuw.addGroep(groep);
+     	}
+		nieuw.setGroep(gebruiker.getGroep());
 		
 //		if (gebruiker.getPosts() != null)
 //		nieuw.setPosts(gebruiker.getPosts());
