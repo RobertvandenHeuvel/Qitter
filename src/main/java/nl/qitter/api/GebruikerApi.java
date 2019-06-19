@@ -68,8 +68,8 @@ public class GebruikerApi {
 		nieuw.setRol(gebruiker.getRol());
 		
 		
-		if (gebruiker.getGroep() != null)
-			nieuw.setGroep(gebruiker.getGroep());
+//		if (gebruiker.getGroep() != null)
+//			nieuw.setGroep(gebruiker.getGroep());
 		
 //		if (gebruiker.getPosts() != null)
 //		nieuw.setPosts(gebruiker.getPosts());
