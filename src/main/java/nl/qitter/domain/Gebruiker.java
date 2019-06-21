@@ -20,11 +20,20 @@ public class Gebruiker {
 	private String achternaam;
 	private String email;
 	private Rol rol;
+	private String token;
 	
 //	@JsonIgnoreProperties("gebruikers")
 //	@ManyToMany(fetch = FetchType.EAGER)
 //	private Set<Groep> groep;
 	
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
 	@JsonIgnoreProperties("gebruiker")
 	@OneToMany(mappedBy="gebruiker",fetch = FetchType.EAGER)
 	private Set<Post> posts;

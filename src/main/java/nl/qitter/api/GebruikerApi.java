@@ -66,6 +66,8 @@ public class GebruikerApi {
 		nieuw.setEmail(gebruiker.getEmail());
 		if (gebruiker.getRol() != null)
 		nieuw.setRol(gebruiker.getRol());
+		if (gebruiker.getToken() != null)
+		nieuw.setToken(gebruiker.getToken());
 		
 		
 //		if (gebruiker.getGroep() != null)
@@ -110,5 +112,16 @@ public class GebruikerApi {
 		gebruikerService.deleteGebruikerById(id);
 		System.out.println("Check in Delete/id van GebruikerApi");
 		return Response.status(Response.Status.OK).build();
+	}
+	
+	@POST // Update
+	@Path("authenticate")
+	public Response apiLogin(Gebruiker user) {
+       	System.out.println("check in apilogin" + user.getUsername() + " " + user.getWachtwoord());
+       	user = gebruikerService.findByLogin(user.getUsername(), user.getWachtwoord());
+       	user.setToken("fake-jwt-token");
+       	System.out.println("in apiLogin @ GebruikerApi " + user.getUsername());
+       	System.out.println("in apiLogin @ GebruikerApi " + user.getToken());
+       	return Response.ok(user).build();
 	}
 }
