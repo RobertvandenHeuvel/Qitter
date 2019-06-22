@@ -8,6 +8,7 @@ import javax.ws.rs.core.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import nl.qitter.config.JsonWebToken;
 import nl.qitter.domain.Gebruiker;
 import nl.qitter.domain.Post;
 //import nl.qitter.domain.Groep;
@@ -19,6 +20,7 @@ import nl.qitter.services.PostService;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class GebruikerApi {
+	Long JWTId= 1L;
 	@Autowired
 	GebruikerService gebruikerService;
 	@Autowired
@@ -119,9 +121,11 @@ public class GebruikerApi {
 	public Response apiLogin(Gebruiker user) {
        	System.out.println("check in apilogin" + user.getUsername() + " " + user.getWachtwoord());
        	user = gebruikerService.findByLogin(user.getUsername(), user.getWachtwoord());
-       	user.setToken("fake-jwt-token");
-       	System.out.println("in apiLogin @ GebruikerApi " + user.getUsername());
-       	System.out.println("in apiLogin @ GebruikerApi " + user.getToken());
+       	user.setToken(JsonWebToken.createJWT(JWTId.toString(), "Qitter", user.getUsername(), 0));
+       	JWTId++;
+       	System.out.println("in apiLogin @ GebruikerApi username: " + user.getUsername());
+       	System.out.println("in apiLogin @ GebruikerApi token: " + user.getToken());
+       	System.out.println("in apiLogin @ GebruikerApi token decoded: " + JsonWebToken.decodeJWT(user.getToken()));
        	return Response.ok(user).build();
 	}
 }
