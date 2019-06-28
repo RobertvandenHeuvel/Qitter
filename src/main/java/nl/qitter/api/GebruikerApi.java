@@ -121,7 +121,7 @@ public class GebruikerApi {
 	public Response apiLogin(Gebruiker user) {
        	System.out.println("check in apilogin" + user.getUsername() + " " + user.getWachtwoord());
        	user = gebruikerService.findByLogin(user.getUsername(), user.getWachtwoord());
-       	user.setToken(JsonWebToken.createJWT(JWTId.toString(), "Qitter", user.getUsername(), 0));
+       	user.setToken(JsonWebToken.createJWT(JWTId.toString(), "Qitter", user.getUsername(), -1));
        	JWTId++;
        	System.out.println("in apiLogin @ GebruikerApi username: " + user.getUsername());
        	System.out.println("in apiLogin @ GebruikerApi token: " + user.getToken());
