@@ -1,5 +1,6 @@
 package nl.qitter.services;
 
+import java.util.Iterator;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,17 @@ public class GebruikerService {
 	
 	public Optional<Gebruiker> findGebruikerById(long id) {
      	return gebruikerRepository.findById(id);
+	}
+	
+	public Gebruiker findByLogin(String username, String wachtwoord) {
+     	Iterable<Gebruiker> users = gebruikerRepository.findByUsernameAndWachtwoord(username, wachtwoord);
+     	System.out.println("in findByLogin @GebruikerService " + username + " " + wachtwoord);
+     	Gebruiker user = null;
+     	Iterator<Gebruiker> x = users.iterator();
+     			while(x.hasNext()) {
+     				user = x.next();
+     			}
+     			System.out.println("in findByLogin @GebruikerService " +user.getId());
+     	return user;
 	}
 }
