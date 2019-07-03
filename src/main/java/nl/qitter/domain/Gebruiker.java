@@ -22,9 +22,9 @@ public class Gebruiker {
 	private Rol rol;
 	private String token;
 	
-//	@JsonIgnoreProperties("gebruikers")
-//	@ManyToMany(fetch = FetchType.EAGER)
-//	private Set<Groep> groep;
+	@JsonIgnoreProperties("gebruikers")
+	@ManyToMany (mappedBy="gebruiker", cascade=CascadeType.ALL, fetch = FetchType.EAGER) //Jordi edit //(fetch = FetchType.EAGER)
+	private Set<Groep> groepen;
 	
 	public String getToken() {
 		return token;
@@ -94,13 +94,13 @@ public class Gebruiker {
 		this.rol = rol;
 	}
 
-//	public Set<Groep> getGroep() {
-//		return groep;
-//	}
-//
-//	public void setGroep(Set<Groep> groep) {
-//		this.groep = groep;
-//	}
+	public Set<Groep> getGroepen() { //Jordi
+		return groepen;
+	}
+
+	public void setGroep(Set<Groep> groepen) {//Jordi
+		this.groepen = groepen;
+	}
 
 	public Set<Post> getPosts() {
 		return posts;
