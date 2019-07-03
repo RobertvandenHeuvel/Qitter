@@ -14,21 +14,21 @@ public class Groep {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-//	@JsonIgnoreProperties("groep")
-//	@ManyToMany (mappedBy = "groep", fetch = FetchType.EAGER)
-//	private Set<Gebruiker> gebruikers;
+	@JsonIgnoreProperties("groep")
+	@ManyToMany (cascade=CascadeType.ALL, fetch = FetchType.EAGER)// Jordi edit (mappedBy = "groep", fetch = FetchType.EAGER)
+	private Set<Gebruiker> gebruikers;
 
 	private String groepsNaam;
 	
 	
 //	Getters en Setters
 	
-//	public Set<Gebruiker> getGebruikers() {
-//		return gebruikers;
-//	}
-//	public void setGebruikers(Set<Gebruiker> gebruikers) {
-//		this.gebruikers = gebruikers;
-//	}
+	public Set<Gebruiker> getGebruikers() {
+		return gebruikers;
+	}
+	public void setGebruikers(Set<Gebruiker> gebruikers) {
+		this.gebruikers = gebruikers;
+	}
 	
 	public String getGroepsNaam() {
 		return groepsNaam;

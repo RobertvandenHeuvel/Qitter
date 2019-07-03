@@ -12,7 +12,7 @@ import java.util.Date;
 /*
     Our simple static class that demonstrates how to create and decode JWTs.
  */
-public class JsonWebToken {
+public class JsonWebToken{
 
     // The secret key. This should be in a property file NOT under source
     // control and not hard coded in real life. We're putting it here for
