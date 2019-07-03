@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import nl.qitter.config.JsonWebToken;
 import nl.qitter.domain.Gebruiker;
 import nl.qitter.domain.Post;
+import nl.qitter.domain.Rol;
 //import nl.qitter.domain.Groep;
 import nl.qitter.services.GebruikerService;
 import nl.qitter.services.PostService;
@@ -121,11 +122,11 @@ public class GebruikerApi {
 	public Response apiLogin(Gebruiker user) {
        	System.out.println("check in apilogin" + user.getUsername() + " " + user.getWachtwoord());
        	user = gebruikerService.findByLogin(user.getUsername(), user.getWachtwoord());
-       	user.setToken(JsonWebToken.createJWT(JWTId.toString(), "Qitter", user.getUsername(), -1));
+       	user.setToken(JsonWebToken.createJWT(JWTId.toString(), user.getRol(), "Qitter", user.getUsername(), -1));
        	JWTId++;
        	System.out.println("in apiLogin @ GebruikerApi username: " + user.getUsername());
        	System.out.println("in apiLogin @ GebruikerApi token: " + user.getToken());
-       	System.out.println("in apiLogin @ GebruikerApi token decoded: " + JsonWebToken.decodeJWT(user.getToken()));
+       	System.out.println("in apiLogin @ GebruikerApi token decoded: " + JsonWebToken.decodeJWT(user.getToken(), user.getRol()));
        	return Response.ok(user).build();
 	}
 }
